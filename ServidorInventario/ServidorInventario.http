@@ -1,0 +1,11 @@
+@ServidorInventario_HostAddress = http://localhost:5256
+
+GET {{ServidorInventario_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{ServidorInventario_HostAddress}}/todos/1
+Accept: application/json
+
+###
