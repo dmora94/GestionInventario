@@ -1,0 +1,34 @@
+@GestionProductos_HostAddress = http://localhost:5218
+@contentType = application/json
+
+###
+GET {{GestionProductos_HostAddress}}/consultas/obtenerProductos/
+Accept: {{contentType}}
+
+###
+GET {{GestionProductos_HostAddress}}/consultas/obtenerProductosPorId/
+Accept: {{contentType}}
+
+###
+GET {{GestionProductos_HostAddress}}/consultas/obtenerProductosPorNombre/
+Accept: {{contentType}}
+
+###
+GET {{GestionProductos_HostAddress}}/consultas/obtenerProducto/1/
+Accept: {{contentType}}
+
+###
+GET {{GestionProductos_HostAddress}}/consultas/validarInventario/
+Accept: {{contentType}}
+
+###
+POST {{GestionProductos_HostAddress}}/comandos/agregarProducto/
+Accept: {{contentType}}
+
+###
+PUT {{GestionProductos_HostAddress}}/comandos/actualizarProducto/1/
+Accept: {{contentType}}
+
+###
+DELETE {{GestionProductos_HostAddress}}/comandos/eliminarProducto/1/
+Accept: {{contentType}}

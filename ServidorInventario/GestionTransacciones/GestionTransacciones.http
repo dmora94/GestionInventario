@@ -1,0 +1,27 @@
+@GestionTransacciones_HostAddress = http://localhost:5062
+@contentTypeTransaccion = application/json
+
+###
+GET {{GestionTransacciones_HostAddress}}/consultas/obtenerTransaccionesPorIdProducto/
+Accept: {{contentTypeTransaccion}}
+
+###
+GET {{GestionTransacciones_HostAddress}}/consultas/obtenerTransaccionesPorFiltros/
+Accept: {{contentTypeTransaccion}}
+
+###
+GET {{GestionTransacciones_HostAddress}}/consultas/obtenerTransaccion/1/
+Accept: {{contentTypeTransaccion}}
+
+
+###
+POST {{GestionTransacciones_HostAddress}}/comandos/agregarTransaccion/
+Accept: {{contentTypeTransaccion}}
+
+###
+PUT {{GestionTransacciones_HostAddress}}/comandos/actualizarTransaccion/1/
+Accept: {{contentTypeTransaccion}}
+
+###
+DELETE {{GestionTransacciones_HostAddress}}/comandos/eliminarTransaccion/1/
+Accept: {{contentTypeTransaccion}}
