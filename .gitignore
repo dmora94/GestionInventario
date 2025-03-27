@@ -10,3 +10,5 @@
 /ServidorInventario/GestionProductos/obj
 /ServidorInventario/GestionTransacciones/bin/Debug/net8.0
 /ServidorInventario/GestionTransacciones/obj
+/ServidorInventario/Comun/bin/Debug/net8.0
+/ServidorInventario/Comun/obj
