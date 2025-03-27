@@ -24,7 +24,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors(cors => cors.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.MapTransaccionEndpointsConsulta();
 app.MapTransaccionEndpointsComando();

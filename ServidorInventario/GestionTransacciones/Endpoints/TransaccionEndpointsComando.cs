@@ -9,24 +9,24 @@ public static class TransaccionEndpointsComando
     {
         var app = @this.MapGroup("/comandos");
 
-        app.MapPost("/agregarTransaccion", (HttpContext httpContext, TransaccionDalc transaccionDalc) =>
+        app.MapPost("/agregarTransaccion", (AgregarTransaccion agregarTransaccion, TransaccionDalc transaccionDalc) =>
         {
-            var producto = CrearTransaccion(httpContext);
+            var transaccion = CrearTransaccion(agregarTransaccion);
 
-            transaccionDalc.AgregarTransaccionAsync(producto).GetAwaiter().GetResult();
-            return Results.Created($"/agregarTransaccion/{producto.Id}", producto);
+            transaccionDalc.AgregarTransaccionAsync(transaccion).GetAwaiter().GetResult();
+            return Results.Created($"/agregarTransaccion/{transaccion.Id}", transaccion);
         })
         .WithName("AgregarTransaccion")
         .WithOpenApi();
 
-        app.MapPut("/actualizarTransaccion/{Id:int}", (int id, HttpContext httpContext, TransaccionDalc transaccionDalc) =>
+        app.MapPut("/actualizarTransaccion/{Id:int}", (int id, ActualizarTransaccion actualizarTransaccion, TransaccionDalc transaccionDalc) =>
         {
             var transaccion = transaccionDalc.ObtenerTransaccionAsync(id).GetAwaiter().GetResult();
 
             if (transaccion == null)
                 return Results.NotFound();
 
-            ActualizarTransaccion(httpContext, transaccion);
+            ActualizarTransaccion(actualizarTransaccion, transaccion);
 
             transaccionDalc.ActualizarTransaccionAsync(transaccion).GetAwaiter().GetResult();
             return Results.NoContent();
@@ -42,27 +42,25 @@ public static class TransaccionEndpointsComando
             .WithOpenApi();
     }
 
-    private static Transaccion CrearTransaccion(HttpContext httpContext)
+    private static Transaccion CrearTransaccion(AgregarTransaccion agregarTransaccion)
     {
-        var formCollection = httpContext.Request.ReadFormAsync().GetAwaiter().GetResult();
-        var transaccion = new Transaccion(int.Parse(formCollection["IdProducto"]!),
-                                          DateTime.Parse(formCollection["Fecha"]!),
-                                          formCollection["TipoTransaccion"]!,
-                                          int.Parse(formCollection["Cantidad"]!),
-                                          decimal.Parse(formCollection["PrecioUnitario"]!),
-                                          decimal.Parse(formCollection["PrecioTotal"]!),
-                                          formCollection["Detalle"]!);
+        var transaccion = new Transaccion(agregarTransaccion.IdProducto,
+                                          agregarTransaccion.Fecha,
+                                          agregarTransaccion.TipoTransaccion,
+                                          agregarTransaccion.Cantidad,
+                                          agregarTransaccion.PrecioUnitario,
+                                          agregarTransaccion.PrecioTotal,
+                                          agregarTransaccion.Detalle);
         return transaccion;
     }
 
-    private static void ActualizarTransaccion(HttpContext httpContext,
+    private static void ActualizarTransaccion(ActualizarTransaccion actualizar,
                                               Transaccion transaccion)
     {
-        var formCollection = httpContext.Request.ReadFormAsync().GetAwaiter().GetResult();
-        transaccion.Cantidad = int.Parse(formCollection["Cantidad"]!);       
-        transaccion.PrecioUnitario =decimal.Parse( formCollection["PrecioUnitario"]!);
-        transaccion.PrecioTotal = decimal.Parse( formCollection["PrecioTotal"]!);
-        transaccion.Detalle= formCollection["Detalle"]!;
+        transaccion.Cantidad = actualizar.Cantidad;
+        transaccion.PrecioUnitario = actualizar.PrecioUnitario;
+        transaccion.PrecioTotal = actualizar.PrecioTotal;
+        transaccion.Detalle = actualizar.Detalle;
     }
 
     

@@ -16,13 +16,12 @@ public static class ProductoEndpointsConsulta
         .WithName("ObtenerProductos")
         .WithOpenApi();
 
-        app.MapGet("/obtenerProducobtenerProductosPorNombretosPorId", (HttpContext httpContext, ProductoDalc productoDalc) =>
+        app.MapGet("/obtenerProductosPorId", (ObtenerProductosPorId obtenerProductosPorId, ProductoDalc productoDalc) =>
         {
-            var formCollection = httpContext.Request.ReadFormAsync().GetAwaiter().GetResult();
             var productos = productoDalc
-                            .ObtenerProductosPorIdAsync(int.Parse(formCollection["Id"]!),
-                                                        bool.Parse(formCollection["Ascendente"]!),
-                                                        int.Parse(formCollection["NumeroRegistros"]!))
+                            .ObtenerProductosPorIdAsync(obtenerProductosPorId.Id,
+                                                        obtenerProductosPorId.Ascendente,
+                                                        obtenerProductosPorId.NumeroRegistros)
                             .GetAwaiter()
                             .GetResult();
 
@@ -31,13 +30,12 @@ public static class ProductoEndpointsConsulta
         .WithName("ObtenerProductosPorId")
         .WithOpenApi();
 
-        app.MapGet("/obtenerProductosPorNombre", (HttpContext httpContext, ProductoDalc productoDalc) =>
+        app.MapGet("/obtenerProductosPorNombre", (ObtenerProductosPorNombre obtenerProductosPorNombre, ProductoDalc productoDalc) =>
         {
-            var formCollection = httpContext.Request.ReadFormAsync().GetAwaiter().GetResult();
             var productos = productoDalc
-                            .ObtenerProductosPorNombreAsync(formCollection["Nombre"]!,
-                                                            bool.Parse(formCollection["Ascendente"]!),
-                                                            int.Parse(formCollection["NumeroRegistros"]!))
+                            .ObtenerProductosPorNombreAsync(obtenerProductosPorNombre.Nombre,
+                                                            obtenerProductosPorNombre.Ascendente,
+                                                            obtenerProductosPorNombre.NumeroRegistros)
                             .GetAwaiter()
                             .GetResult();
 
@@ -45,20 +43,6 @@ public static class ProductoEndpointsConsulta
         })
         .WithName("ObtenerProductosPorNombre")
         .WithOpenApi();
-
-        app.MapGet("/validarInventario", (HttpContext httpContext, ProductoDalc productoDalc) =>
-        {
-            var formCollection = httpContext.Request.ReadFormAsync().GetAwaiter().GetResult();
-            var resultado = productoDalc
-                            .ValidarInventarioAsync(int.Parse(formCollection["IdProducto"]!),
-                                                    int.Parse(formCollection["StockDisminuir"]!))
-                            .GetAwaiter()
-                            .GetResult();
-
-            return Results.Ok(resultado);
-        })
-       .WithName("ValidarInventario")
-       .WithOpenApi();
 
         app.MapGet("/obtenerProducto/{Id:int}", (int id, ProductoDalc productoDalc) =>
         {
@@ -68,7 +52,22 @@ public static class ProductoEndpointsConsulta
                    ? Results.Ok(producto.ObtenerProductoDto())
                    : Results.NotFound(default);
         })
-        .WithName("ObtenerProducto")
-        .WithOpenApi(); 
+       .WithName("ObtenerProducto")
+       .WithOpenApi();
+
+        app.MapGet("/validarInventario", (ValidarInventario validarInventario, ProductoDalc productoDalc) =>
+        {
+            var resultado = productoDalc
+                            .ValidarInventarioAsync(validarInventario.IdProducto,
+                                                    validarInventario.StockDisminuir)
+                            .GetAwaiter()
+                            .GetResult();
+
+            return Results.Ok(resultado);
+        })
+       .WithName("ValidarInventario")
+       .WithOpenApi();
+
+        
     }
 }

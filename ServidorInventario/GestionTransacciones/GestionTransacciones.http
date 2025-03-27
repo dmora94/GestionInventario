@@ -1,27 +1,61 @@
 @GestionTransacciones_HostAddress = http://localhost:5062
-@contentTypeTransaccion = application/json
+
 
 ###
 GET {{GestionTransacciones_HostAddress}}/consultas/obtenerTransaccionesPorIdProducto/
-Accept: {{contentTypeTransaccion}}
+Accept: application/json
+Content-Type: application/json
+{
+  "IdProducto": 1,
+  "IdTransaccion": 1,
+  "Ascendente": true,
+  "NumeroRegistros": 10
+}
 
 ###
 GET {{GestionTransacciones_HostAddress}}/consultas/obtenerTransaccionesPorFiltros/
-Accept: {{contentTypeTransaccion}}
+Accept: application/json
+Content-Type: application/json
+{
+  "IdProducto": 1,
+  "Fecha":"2025-03-27", 
+  "TipoTransaccion": "COMPRA",
+  "IdTransaccion": 1,
+  "Ascendente": true,
+  "NumeroRegistro": 10
+}
 
 ###
 GET {{GestionTransacciones_HostAddress}}/consultas/obtenerTransaccion/1/
-Accept: {{contentTypeTransaccion}}
-
+Accept: application/json
 
 ###
 POST {{GestionTransacciones_HostAddress}}/comandos/agregarTransaccion/
-Accept: {{contentTypeTransaccion}}
+Accept: application/json
+Content-Type: application/json
+{
+  "IdProducto": 1,
+  "Fecha":"2025-03-27",
+  "TipoTransaccion": "COMPRA",
+  "Cantidad": 15,
+  "PrecioUnitario":10.00, 
+  "PrecioTotal": 150.00,
+  "Detalle": 1
+}
+
 
 ###
 PUT {{GestionTransacciones_HostAddress}}/comandos/actualizarTransaccion/1/
-Accept: {{contentTypeTransaccion}}
+Accept: application/json
+Content-Type: application/json
+{
+  "Cantidad": 15,
+  "PrecioUnitario":10.00, 
+  "PrecioTotal": 150.00
+  "Detalle": 1
+}
+
 
 ###
 DELETE {{GestionTransacciones_HostAddress}}/comandos/eliminarTransaccion/1/
-Accept: {{contentTypeTransaccion}}
+Content-Type: application/json

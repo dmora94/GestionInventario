@@ -11,15 +11,14 @@ public static class TransaccionEndpointsConsulta
     {
         var app = @this.MapGroup("/consultas");
 
-        app.MapGet("/obtenerTransaccionesPorIdProducto", (HttpContext httpContext, TransaccionDalc transaccionDalc) =>
+        app.MapGet("/obtenerTransaccionesPorIdProducto", (ObtenerTransaccionesPorIdProducto obtenerTransaccionesPorIdProducto, TransaccionDalc transaccionDalc) =>
         {
-            var formCollection = httpContext.Request.ReadFormAsync().GetAwaiter().GetResult();
             var transacciones = 
                 transaccionDalc
-                .ObtenerTransaccionesPorIdProductoAsync(int.Parse(formCollection["IdProducto"]!),
-                                                        int.Parse(formCollection["IdTransaccion"]!),
-                                                        bool.Parse(formCollection["Ascendente"]!),
-                                                        int.Parse(formCollection["NumeroRegistro"]!))
+                .ObtenerTransaccionesPorIdProductoAsync(obtenerTransaccionesPorIdProducto.IdProducto,
+                                                        obtenerTransaccionesPorIdProducto.IdTransaccion,
+                                                        obtenerTransaccionesPorIdProducto.Ascendente,
+                                                        obtenerTransaccionesPorIdProducto.NumeroRegistros)
                 .GetAwaiter()
                 .GetResult();
 
@@ -28,17 +27,16 @@ public static class TransaccionEndpointsConsulta
         .WithName("ObtenerTransaccionesPorIdProducto")
         .WithOpenApi();
 
-        app.MapGet("/obtenerTransaccionesPorFiltros", (HttpContext httpContext, TransaccionDalc transaccionDalc) =>
+        app.MapGet("/obtenerTransaccionesPorFiltros", (ObtenerTransaccionesPorFiltros obtenerTransaccionesPorFiltros,  TransaccionDalc transaccionDalc) =>
         {
-            var formCollection = httpContext.Request.ReadFormAsync().GetAwaiter().GetResult();
             var transacciones =
                 transaccionDalc
-                .ObtenerTransaccionesPorFiltrosAsync(int.Parse(formCollection["IdProducto"]!),
-                                                     DateTime.Parse(formCollection["Fecha"]!),
-                                                     formCollection["TipoTransaccion"]!,
-                                                     int.Parse(formCollection["IdTransaccion"]!),
-                                                     bool.Parse(formCollection["Ascendente"]!),
-                                                     int.Parse(formCollection["NumeroRegistro"]!))
+                .ObtenerTransaccionesPorFiltrosAsync(obtenerTransaccionesPorFiltros.IdProducto,
+                                                     obtenerTransaccionesPorFiltros.Fecha,
+                                                     obtenerTransaccionesPorFiltros.TipoTransaccion,
+                                                     obtenerTransaccionesPorFiltros.IdTransaccion,
+                                                     obtenerTransaccionesPorFiltros.Ascendente,
+                                                     obtenerTransaccionesPorFiltros.NumeroRegistros)
                 .GetAwaiter()
                 .GetResult();
 

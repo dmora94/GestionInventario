@@ -56,7 +56,7 @@ public static class ProductoEndpointsComando
     }
 
     private static void ActualizarProducto(HttpContext httpContext,
-                                                  Producto producto)
+                                           Producto producto)
     {
         var formCollection = httpContext.Request.ReadFormAsync().GetAwaiter().GetResult();
         producto.Nombre = formCollection["Nombre"]!;
