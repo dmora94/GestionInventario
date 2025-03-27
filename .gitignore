@@ -6,3 +6,7 @@
 /ServidorInventario/.vs/ServidorInventario
 /ServidorInventario/bin/Debug/net8.0
 /ServidorInventario/obj
+/ServidorInventario/GestionProductos/bin/Debug/net8.0
+/ServidorInventario/GestionProductos/obj
+/ServidorInventario/GestionTransacciones/bin/Debug/net8.0
+/ServidorInventario/GestionTransacciones/obj
