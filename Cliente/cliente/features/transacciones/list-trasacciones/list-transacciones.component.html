@@ -1,0 +1,34 @@
+<h2>Listado de Transacciones</h2>
+
+<label>Seleccionar Producto:</label>
+<select [(ngModel)]="idProductoSeleccionado" (change)="obtenerTransacciones()" class="form-control">
+  <option *ngFor="let producto of productos" [value]="producto.id">{{ producto.nombre }}</option>
+</select>
+
+<button class="btn btn-primary mt-2" routerLink="/transacciones/nueva">Nueva Transacción</button>
+
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Fecha</th>
+      <th>Tipo</th>
+      <th>Cantidad</th>
+      <th>Precio Total</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transaccion of transacciones">
+      <td>{{ transaccion.idTransaccion }}</td>
+      <td>{{ transaccion.fecha }}</td>
+      <td>{{ transaccion.tipoTransaccion }}</td>
+      <td>{{ transaccion.cantidad }}</td>
+      <td>{{ transaccion.precioTotal }}</td>
+      <td>
+        <button class="btn btn-warning" [routerLink]="['/transacciones/editar', transaccion.idTransaccion]">Editar</button>
+        <button class="btn btn-danger" (click)="eliminarTransaccion(transaccion.idTransaccion!)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

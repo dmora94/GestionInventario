@@ -1,0 +1,30 @@
+<h2>{{ esEdicion ? 'Editar' : 'Nueva' }} Transacción</h2>
+<form [formGroup]="form" (ngSubmit)="validarStock()">
+  
+  <label>Producto:</label>
+  <select formControlName="idProducto" class="form-control" [disabled]="esEdicion">
+    <option *ngFor="let producto of productos" [value]="producto.id">{{ producto.nombre }}</option>
+  </select>
+
+  <label>Fecha:</label>
+  <input type="date" formControlName="fecha" class="form-control">
+
+  <label>Tipo de Transacción:</label>
+  <select formControlName="tipoTransaccion" class="form-control" [disabled]="esEdicion">
+    <option *ngFor="let tipo of tiposTransaccion" [value]="tipo">{{ tipo }}</option>
+  </select>
+
+  <label>Cantidad:</label>
+  <input type="number" formControlName="cantidad" class="form-control" (input)="calcularPrecioTotal()">
+
+  <label>Precio Unitario:</label>
+  <input type="number" formControlName="precioUnitario" class="form-control" (input)="calcularPrecioTotal()">
+
+  <label>Precio Total:</label>
+  <input type="number" formControlName="precioTotal" class="form-control" disabled>
+
+  <label>Detalle:</label>
+  <textarea formControlName="detalle" class="form-control"></textarea>
+
+  <button class="btn btn-primary" type="submit">{{ esEdicion ? 'Actualizar' : 'Guardar' }}</button>
+</form>
