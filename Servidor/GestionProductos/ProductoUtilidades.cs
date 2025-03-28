@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-using System.Linq;
-namespace GestionProductos;
+﻿namespace GestionProductos;
 
 public static class ProductoUtilidades
 {
@@ -9,8 +7,8 @@ public static class ProductoUtilidades
         ? Convert.FromBase64String(imagenBase64)
         : null;
 
-  
-  
+
+
 
     public static IList<T> ReversePorAscendente<T>(this IEnumerable<T> @this,
                                                    bool ascendente)
