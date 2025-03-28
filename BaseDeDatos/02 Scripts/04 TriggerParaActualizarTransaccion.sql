@@ -32,4 +32,13 @@ BEGIN
     SET p.STOCK = p.STOCK + d.DiferenciaStock
     FROM [INVENTARIO].[PRODUCTOS] p
     INNER JOIN @Diferencias d ON p.ID = d.IDPRODUCTO;
+
+    UPDATE t
+    SET 
+        t.CANTIDAD = i.CANTIDAD,
+        t.PRECIOUNITARIO = i.PRECIOUNITARIO,
+        t.PRECIOTOTAL = i.PRECIOTOTAL,
+        t.DETALLE = i.DETALLE
+    FROM [INVENTARIO].[TRANSACCIONES] t
+    INNER JOIN inserted i ON t.ID = i.ID
 END;
