@@ -53,13 +53,13 @@ Content-Type: application/json
   "IdTransaccion": 1
   "Cantidad": 15,
   "PrecioUnitario":10.00, 
-  "PrecioTotal": 150.00
+  "PrecioTotal": 150.00,
   "Detalle": 1
 }
 
 
 ###
-POST {{GestionTransacciones_HostAddress}}/comandos/eliminarTransaccion/1/
+POST {{GestionTransacciones_HostAddress}}/comandos/eliminarTransaccion/
 Content-Type: application/json
 {
     "IdProducto": 1

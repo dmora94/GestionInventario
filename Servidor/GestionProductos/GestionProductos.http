@@ -26,7 +26,7 @@ Content-Type: application/json
 }
 
 ###
-POST {{GestionProductos_HostAddress}}/consultas/obtenerProducto/1/
+POST {{GestionProductos_HostAddress}}/consultas/obtenerProducto/
 Accept: {{contentType}}
 {
   "Id": 1
@@ -47,12 +47,12 @@ POST {{GestionProductos_HostAddress}}/comandos/agregarProducto/
 Accept: application/json
 Content-Type: application/json
 {
-    "Nombre" = "Laptop",
-    "Descripcion" = "i7",
-    "Categoria" = "Tecnología",
-    "Precio" = "1500.50",
-    "Stock" = "50",
-    "Imagen" = "bas64"
+    "Nombre" : "Laptop",
+    "Descripcion" : "i7",
+    "Categoria" : "Tecnología",
+    "Precio" : "1500.50",
+    "Stock" : "50",
+    "Imagen" : "bas64"
 }
 
 
@@ -61,12 +61,12 @@ POST {{GestionProductos_HostAddress}}/comandos/actualizarProducto/
 Content-Type: application/json
 {
     "Id": 1,
-    "Nombre" = "Laptop",
-    "Descripcion" = "i7",
-    "Categoria" = "Tecnología",
-    "Precio" = "1500.50",
-    "Stock" = "50",
-    "Imagen" = "bas64"
+    "Nombre" : "Laptop",
+    "Descripcion" : "i7",
+    "Categoria" : "Tecnología",
+    "Precio" : "1500.50",
+    "Stock" : "50",
+    "Imagen" : "bas64"
 }
 
 ### 
