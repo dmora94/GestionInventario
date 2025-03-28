@@ -1,0 +1,77 @@
+@GestionProductos_HostAddress = http://localhost:5207
+
+###
+POST {{GestionProductos_HostAddress}}/consultas/obtenerProductos/
+Accept: application/json
+
+###
+POST {{GestionProductos_HostAddress}}/consultas/obtenerProductosPorId/
+Accept: application/json
+Content-Type: application/json
+{
+  "Id": 1,
+  "Ascendente": true,
+  "NumeroRegistros": 10
+}
+
+###
+POST {{GestionProductos_HostAddress}}/consultas/obtenerProductosPorNombre/
+Accept: application/json
+Content-Type: application/json
+{
+  "Nombre": "Computadora",
+  "Id": 1,
+  "Ascendente": true,
+  "NumeroRegistros": 10
+}
+
+###
+POST {{GestionProductos_HostAddress}}/consultas/obtenerProducto/1/
+Accept: {{contentType}}
+{
+  "Id": 1
+}
+
+###
+POST {{GestionProductos_HostAddress}}/consultas/validarInventario/
+Accept: application/json
+Content-Type: application/json
+{
+  "IdProducto": 1,
+  "StockDisminuir": 10
+}
+
+
+### 
+POST {{GestionProductos_HostAddress}}/comandos/agregarProducto/
+Accept: application/json
+Content-Type: application/json
+{
+    "Nombre" = "Laptop",
+    "Descripcion" = "i7",
+    "Categoria" = "Tecnología",
+    "Precio" = "1500.50",
+    "Stock" = "50",
+    "Imagen" = "bas64"
+}
+
+
+### 
+POST {{GestionProductos_HostAddress}}/comandos/actualizarProducto/
+Content-Type: application/json
+{
+    "Id": 1,
+    "Nombre" = "Laptop",
+    "Descripcion" = "i7",
+    "Categoria" = "Tecnología",
+    "Precio" = "1500.50",
+    "Stock" = "50",
+    "Imagen" = "bas64"
+}
+
+### 
+POST {{GestionProductos_HostAddress}}/comandos/eliminarProducto/
+Content-Type: application/json
+{
+    "IdProducto": 1
+}
