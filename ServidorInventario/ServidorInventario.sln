@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionProductos", "Gestion
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionTransacciones", "GestionTransacciones\GestionTransacciones.csproj", "{6C677DD8-1C27-4350-8EC4-C81C6008370E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comun", "Comun\Comun.csproj", "{5D06191A-B8F7-481B-81DC-B4028CA6FAA6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{6C677DD8-1C27-4350-8EC4-C81C6008370E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C677DD8-1C27-4350-8EC4-C81C6008370E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C677DD8-1C27-4350-8EC4-C81C6008370E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D06191A-B8F7-481B-81DC-B4028CA6FAA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D06191A-B8F7-481B-81DC-B4028CA6FAA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D06191A-B8F7-481B-81DC-B4028CA6FAA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D06191A-B8F7-481B-81DC-B4028CA6FAA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

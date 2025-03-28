@@ -18,38 +18,30 @@ public class Transaccion
                        decimal precioTotal,
                        string detalle)
     {
-        IdProducto = idProducto;
-        Fecha = fecha;
-        TipoTransaccion = tipoTransaccion;
-        Cantidad = cantidad;
-        PrecioUnitario = precioUnitario;
-        PrecioTotal = precioTotal;
-        Detalle = detalle;
+        IDPRODUCTO = idProducto;
+        FECHA = fecha;
+        TIPOTRANSACCION = tipoTransaccion;
+        CANTIDAD = cantidad;
+        PRECIOUNITARIO = precioUnitario;
+        PRECIOTOTAL = precioTotal;
+        DETALLE = detalle;
     }
 
     [Key]
-    [Column("ID")]
-    public int Id { get; set; }
+    public int ID { get; set; }
 
-    [Column("FECHA")]
-    public DateTime Fecha { get; set; }
+    public DateTime FECHA { get; set; }
 
-    [Column("TIPOTRANSACCION")]
-    public string TipoTransaccion { get; set; }
+    public string TIPOTRANSACCION { get; set; }
 
-    [Column("IDPRODUCTO")]
-    public int IdProducto { get; set; }
+    public int IDPRODUCTO { get; set; }
 
-    [Column("CANTIDAD")]
-    public int Cantidad { get; set; }
+    public int CANTIDAD { get; set; }
 
-    [Column("PRECIOUNITARIO")]
-    public decimal PrecioUnitario { get; set; }
+    public decimal PRECIOUNITARIO { get; set; }
 
-    [Column("PRECIOTOTAL")]
-    public decimal PrecioTotal { get; set; }
+    public decimal PRECIOTOTAL { get; set; }
 
-    [Column("DETALLE")]
-    public string Detalle { get; set; }
+    public string DETALLE { get; set; }
 
 }

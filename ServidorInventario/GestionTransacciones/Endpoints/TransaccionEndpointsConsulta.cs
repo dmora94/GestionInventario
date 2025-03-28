@@ -1,6 +1,8 @@
 ﻿using GestionTransacciones.Dalc;
 using GestionTransacciones.Modelos;
 
+using Microsoft.AspNetCore.Mvc;
+
 using System.Globalization;
 
 namespace GestionTransacciones.Endpoints;
@@ -11,7 +13,8 @@ public static class TransaccionEndpointsConsulta
     {
         var app = @this.MapGroup("/consultas");
 
-        app.MapGet("/obtenerTransaccionesPorIdProducto", (ObtenerTransaccionesPorIdProducto obtenerTransaccionesPorIdProducto, TransaccionDalc transaccionDalc) =>
+        app.MapPost("/obtenerTransaccionesPorIdProducto", 
+                   ([FromBody] ObtenerTransaccionesPorIdProducto obtenerTransaccionesPorIdProducto, TransaccionDalc transaccionDalc) =>
         {
             var transacciones = 
                 transaccionDalc
@@ -27,7 +30,8 @@ public static class TransaccionEndpointsConsulta
         .WithName("ObtenerTransaccionesPorIdProducto")
         .WithOpenApi();
 
-        app.MapGet("/obtenerTransaccionesPorFiltros", (ObtenerTransaccionesPorFiltros obtenerTransaccionesPorFiltros,  TransaccionDalc transaccionDalc) =>
+        app.MapPost("/obtenerTransaccionesPorFiltros", 
+                   ([FromBody] ObtenerTransaccionesPorFiltros obtenerTransaccionesPorFiltros,  TransaccionDalc transaccionDalc) =>
         {
             var transacciones =
                 transaccionDalc
@@ -45,9 +49,10 @@ public static class TransaccionEndpointsConsulta
        .WithName("ObtenerTransaccionesPorFiltros")
        .WithOpenApi();
 
-        app.MapGet("/obtenerTransaccion/{Id:int}", (int id, TransaccionDalc transaccionDalc) =>
+        app.MapPost("/obtenerTransaccion", 
+                   ([FromBody] ObtenerTransaccion obtenerTransaccion, TransaccionDalc transaccionDalc) =>
         {
-            var transaccion = transaccionDalc.ObtenerTransaccionAsync(id).GetAwaiter().GetResult();
+            var transaccion = transaccionDalc.ObtenerTransaccionAsync(obtenerTransaccion.IdTransaccion).GetAwaiter().GetResult();
 
             return transaccion is not null
                    ? Results.Ok(transaccion.ObtenerTransaccionDto())

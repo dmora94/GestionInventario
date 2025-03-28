@@ -1,6 +1,8 @@
 ﻿using GestionTransacciones.Dalc;
 using GestionTransacciones.Modelos;
 
+using Microsoft.AspNetCore.Mvc;
+
 namespace GestionTransacciones.Endpoints;
 
 public static class TransaccionEndpointsComando
@@ -9,19 +11,19 @@ public static class TransaccionEndpointsComando
     {
         var app = @this.MapGroup("/comandos");
 
-        app.MapPost("/agregarTransaccion", (AgregarTransaccion agregarTransaccion, TransaccionDalc transaccionDalc) =>
+        app.MapPost("/agregarTransaccion", ([FromBody] AgregarTransaccion agregarTransaccion, TransaccionDalc transaccionDalc) =>
         {
             var transaccion = CrearTransaccion(agregarTransaccion);
 
             transaccionDalc.AgregarTransaccionAsync(transaccion).GetAwaiter().GetResult();
-            return Results.Created($"/agregarTransaccion/{transaccion.Id}", transaccion);
+            return Results.Created($"/agregarTransaccion/{transaccion.ID}", transaccion);
         })
         .WithName("AgregarTransaccion")
         .WithOpenApi();
 
-        app.MapPut("/actualizarTransaccion/{Id:int}", (int id, ActualizarTransaccion actualizarTransaccion, TransaccionDalc transaccionDalc) =>
+        app.MapPost("/actualizarTransaccion", ([FromBody] ActualizarTransaccion actualizarTransaccion, TransaccionDalc transaccionDalc) =>
         {
-            var transaccion = transaccionDalc.ObtenerTransaccionAsync(id).GetAwaiter().GetResult();
+            var transaccion = transaccionDalc.ObtenerTransaccionAsync(actualizarTransaccion.IdTransaccion).GetAwaiter().GetResult();
 
             if (transaccion == null)
                 return Results.NotFound();
@@ -34,8 +36,8 @@ public static class TransaccionEndpointsComando
         .WithName("ActualizarTransaccion")
         .WithOpenApi();
 
-        app.MapDelete("/eliminarTransaccion/{Id:int}", (int id, TransaccionDalc transaccionDalc) =>
-            transaccionDalc.EliminarTransaccionAsync(id).GetAwaiter().GetResult()
+        app.MapPost("/eliminarTransaccion", ([FromBody] EliminarTransaccion eliminarTransaccion, TransaccionDalc transaccionDalc) =>
+            transaccionDalc.EliminarTransaccionAsync(eliminarTransaccion.IdTransaccion).GetAwaiter().GetResult()
                 ? Results.NoContent()
                 : Results.NotFound())
             .WithName("EliminarTransaccion")
@@ -57,10 +59,10 @@ public static class TransaccionEndpointsComando
     private static void ActualizarTransaccion(ActualizarTransaccion actualizar,
                                               Transaccion transaccion)
     {
-        transaccion.Cantidad = actualizar.Cantidad;
-        transaccion.PrecioUnitario = actualizar.PrecioUnitario;
-        transaccion.PrecioTotal = actualizar.PrecioTotal;
-        transaccion.Detalle = actualizar.Detalle;
+        transaccion.CANTIDAD = actualizar.Cantidad;
+        transaccion.PRECIOUNITARIO = actualizar.PrecioUnitario;
+        transaccion.PRECIOTOTAL = actualizar.PrecioTotal;
+        transaccion.DETALLE = actualizar.Detalle;
     }
 
     
