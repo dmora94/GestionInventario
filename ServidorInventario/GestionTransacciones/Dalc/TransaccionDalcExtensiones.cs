@@ -12,8 +12,8 @@ public static class TransaccionDalcExtensiones
         int idTransaccion,
         bool ascendente) =>
           ascendente
-          ? @this.Where(x => x.IDPRODUCTO  == idProducto && x.ID >= idTransaccion)
-          : @this.Where(x => x.IDPRODUCTO == idProducto && x.ID <= idTransaccion);
+          ? @this.Where(x => x.IdProducto  == idProducto && x.Id >= idTransaccion)
+          : @this.Where(x => x.IdProducto == idProducto && x.Id <= idTransaccion);
 
     public static IQueryable<Transaccion> ConsultaPorFiltros(
         this IQueryable<Transaccion> @this,
@@ -24,14 +24,14 @@ public static class TransaccionDalcExtensiones
         bool ascendente)
     {
         var consultaTransacciones =
-            @this.Where(x => x.IDPRODUCTO  == idProducto &&
-                             x.FECHA == fecha &&
-                             x.TIPOTRANSACCION  == tipoTransaccion);
+            @this.Where(x => x.IdProducto  == idProducto &&
+                             x.Fecha == fecha &&
+                             x.TipoTransaccion  == tipoTransaccion);
 
         return
             ascendente
-            ? consultaTransacciones.Where(x => x.ID >= idTransaccion)
-            : consultaTransacciones.Where(x => x.ID <= idTransaccion);
+            ? consultaTransacciones.Where(x => x.Id >= idTransaccion)
+            : consultaTransacciones.Where(x => x.Id <= idTransaccion);
     }
 
     public static IOrderedQueryable<T> OrderBy<T, TKey>(this IQueryable<T> @this,

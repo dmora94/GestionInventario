@@ -16,7 +16,7 @@ public static class TransaccionEndpointsComando
             var transaccion = CrearTransaccion(agregarTransaccion);
 
             transaccionDalc.AgregarTransaccionAsync(transaccion).GetAwaiter().GetResult();
-            return Results.Created($"/agregarTransaccion/{transaccion.ID}", transaccion);
+            return Results.Created($"/agregarTransaccion/{transaccion.Id}", transaccion);
         })
         .WithName("AgregarTransaccion")
         .WithOpenApi();
@@ -59,10 +59,10 @@ public static class TransaccionEndpointsComando
     private static void ActualizarTransaccion(ActualizarTransaccion actualizar,
                                               Transaccion transaccion)
     {
-        transaccion.CANTIDAD = actualizar.Cantidad;
-        transaccion.PRECIOUNITARIO = actualizar.PrecioUnitario;
-        transaccion.PRECIOTOTAL = actualizar.PrecioTotal;
-        transaccion.DETALLE = actualizar.Detalle;
+        transaccion.Cantidad = actualizar.Cantidad;
+        transaccion.PrecioUnitario = actualizar.PrecioUnitario;
+        transaccion.PrecioTotal = actualizar.PrecioTotal;
+        transaccion.Detalle = actualizar.Detalle;
     }
 
     

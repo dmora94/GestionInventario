@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GestionTransacciones.Modelos;
 
-[Table("TRANSACCIONES", Schema = "INVENTARIO")]
+[Table("TRANSACCIONES", Schema = "INVENTARIO")] 
 public class Transaccion
-{
+{ 
     public Transaccion()
     {
     }
@@ -18,30 +18,30 @@ public class Transaccion
                        decimal precioTotal,
                        string detalle)
     {
-        IDPRODUCTO = idProducto;
-        FECHA = fecha;
-        TIPOTRANSACCION = tipoTransaccion;
-        CANTIDAD = cantidad;
-        PRECIOUNITARIO = precioUnitario;
-        PRECIOTOTAL = precioTotal;
-        DETALLE = detalle;
+        IdProducto = idProducto;
+        Fecha = fecha;
+        TipoTransaccion = tipoTransaccion;
+        Cantidad = cantidad;
+        PrecioUnitario = precioUnitario;
+        PrecioTotal = precioTotal;
+        Detalle = detalle;
     }
 
     [Key]
-    public int ID { get; set; }
+    public int Id { get; set; }
 
-    public DateTime FECHA { get; set; }
+    public DateTime Fecha { get; set; }
 
-    public string TIPOTRANSACCION { get; set; }
+    public string TipoTransaccion { get; set; }
 
-    public int IDPRODUCTO { get; set; }
+    public int IdProducto { get; set; }
 
-    public int CANTIDAD { get; set; }
+    public int Cantidad { get; set; }
 
-    public decimal PRECIOUNITARIO { get; set; }
+    public decimal PrecioUnitario { get; set; }
 
-    public decimal PRECIOTOTAL { get; set; }
+    public decimal PrecioTotal { get; set; }
 
-    public string DETALLE { get; set; }
+    public string Detalle { get; set; }
 
 }

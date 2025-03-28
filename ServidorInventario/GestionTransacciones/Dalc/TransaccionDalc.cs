@@ -29,7 +29,7 @@ public class TransaccionDalc
 
         return
             yy
-            .OrderBy(x => x.ID, ascendente)
+            .OrderBy(x => x.Id, ascendente)
             .Take(numeroRegistros)
             .Reverse(ascendente)
             .ToList();
@@ -50,7 +50,7 @@ public class TransaccionDalc
             .Transacciones
             .AsQueryable()
             .ConsultaPorFiltros(idProducto, fecha, tipoTransaccion, idTransaccion, ascendente)
-            .OrderBy(x => x.ID, ascendente)
+            .OrderBy(x => x.Id, ascendente)
             .Take(numeroRegistros)
             .Reverse(ascendente)
             .ToList();
