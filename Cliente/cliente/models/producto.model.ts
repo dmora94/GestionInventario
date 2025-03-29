@@ -15,7 +15,7 @@ export interface ObtenerProducto{
   Id: number
 }
 
-export interface validarInventario{
+export interface ValidarInventario{
   IdProducto: number;
   StockDisminuir: number;
 }

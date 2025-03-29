@@ -38,4 +38,8 @@ export interface ActualizarTransaccion {
     PrecioTotal: number;
     Detalle: string;
   }
+
+export interface ElimimarTransaccion{
+  IdTransaccion: number;
+}  
   

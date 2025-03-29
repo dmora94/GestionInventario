@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Transaccion } from '../models/transaccion.model';
+import { ObtenerTransaccionesPorIdProducto } from '../models/transaccion.model';
+import { ObtenerTransaccionesPorFiltros } from '../models/transaccion.model';
+import { ObtenerTransaccion } from '../models/transaccion.model';
+import { AgregarTransaccion } from '../models/transaccion.model';
+import { ActualizarTransaccion } from '../models/transaccion.model';
+import { ElimimarTransaccion } from '../models/transaccion.model';
+
 
 @Injectable({ providedIn: 'root' })
 export class TransaccionesService {
