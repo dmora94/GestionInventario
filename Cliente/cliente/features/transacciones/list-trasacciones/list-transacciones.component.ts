@@ -24,14 +24,14 @@ export class ListTransaccionesComponent implements OnInit {
   }
 
   cargarProductos() {
-    this.productosService.obtenerProductos().subscribe((data) => {
+    this.productosService.dameProductos().subscribe((data) => {
       this.productos = data;
     });
   }
 
   obtenerTransacciones() {
     if (this.idProductoSeleccionado) {
-      this.transaccionesService.obtenerTransaccionesPorIdProducto(this.idProductoSeleccionado).subscribe((data) => {
+      this.transaccionesService.dameTransaccionesPorIdProducto(this.idProductoSeleccionado).subscribe((data) => {
         this.transacciones = data;
       });
     }
@@ -39,7 +39,7 @@ export class ListTransaccionesComponent implements OnInit {
 
   eliminarTransaccion(idTransaccion: number) {
     if (confirm('¿Estás seguro de eliminar esta transacción?')) {
-      this.transaccionesService.eliminarTransaccion(idTransaccion).subscribe(() => {
+      this.transaccionesService.borrarTransaccion(idTransaccion).subscribe(() => {
         this.obtenerTransacciones();
       });
     }

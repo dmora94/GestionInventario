@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../../../services/productos.services'
 import { Producto } from '../../../models/producto.model';
-
+import { EliminarProducto } from '../../../models/producto.model';
 @Component({
   selector: 'app-list-productos',
   templateUrl: './list-productos.component.html'
@@ -16,14 +16,17 @@ export class ListProductosComponent implements OnInit {
   }
 
   obtenerProductos() {
-    this.productosService.obtenerProductos().subscribe((data) => {
+    this.productosService.dameProductos().subscribe((data) => {
       this.productos = data;
     });
   }
 
   eliminarProducto(id: number) {
     if (confirm('¿Estás seguro de eliminar este producto?')) {
-      this.productosService.eliminarProducto(id).subscribe(() => {
+      let eliminarProducto : EliminarProducto = {
+        IdProducto:id
+      };
+      this.productosService.borrarProducto(eliminarProducto).subscribe(() => {
         this.obtenerProductos();
       });
     }

@@ -6,13 +6,13 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-producto',
   templateUrl: './from-producto.component.html',
-  styleUrls: ['./form-producto.component.css']
+  //styleUrls: ['./form-producto.component.css']
 })
 export class FormProductoComponent {
   form: FormGroup;
   categorias = ['Tecnología', 'Hogar', 'Oficina'];
 
-  constructor(private fb: FormBuilder, private productoService: ProductosService, private router: Router) {
+  constructor(private fb: FormBuilder, private productosService: ProductosService, private router: Router) {
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
@@ -33,7 +33,7 @@ export class FormProductoComponent {
   }
 
   guardarProducto() {
-    this.productoService.agregarProducto(this.form.value).subscribe(() => {
+    this.productosService.nuevoProducto(this.form.value).subscribe(() => {
       alert('Producto guardado');
       this.router.navigate(['/productos']);
     });
