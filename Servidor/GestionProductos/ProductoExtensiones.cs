@@ -7,12 +7,12 @@ public static class ProductoExtensiones
     public static List<ProductoDto> ObtenerProductoDtos(this List<Producto> @this) =>
        @this
        .Select(x => new ProductoDto(x.Id,
-                                    x.Nombre,
-                                    x.Descripcion,
-                                    x.Categoria,
-                                    x.Imagen,
-                                    x.Precio,
-                                    x.Stock))
+                                   x.Nombre,
+                                   x.Descripcion,
+                                   x.Categoria,
+                                   x.Imagen is not null ? Convert.ToBase64String(x.Imagen) : string.Empty,
+                                   x.Precio,
+                                   x.Stock))
        .ToList();
 
     public static ProductoDto ObtenerProductoDto(this Producto @this) =>
@@ -20,7 +20,7 @@ public static class ProductoExtensiones
              @this.Nombre,
              @this.Descripcion,
              @this.Categoria,
-             @this.Imagen,
+             @this.Imagen is not null ? Convert.ToBase64String(@this.Imagen) : string.Empty,
              @this.Precio,
              @this.Stock);
 

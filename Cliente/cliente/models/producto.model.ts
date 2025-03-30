@@ -20,6 +20,10 @@ export interface ValidarInventario{
   StockDisminuir: number;
 }
 
+export interface ValidarInventarioResult{
+  Resuesta: boolean;
+}
+
 export interface AgregarProducto{
   Nombre: string;
   Descripcion:string;
@@ -30,6 +34,10 @@ export interface AgregarProducto{
   
 }
 
+
+export interface AgregarProductoResult{
+  IdProducto: number;
+}
 export interface ActualizarProducto {
     Id: number;
     Nombre: string;
@@ -42,6 +50,15 @@ export interface ActualizarProducto {
 
 export interface EliminarProducto{
   IdProducto:number;
+}
+
+export interface Producto{
+  Id: number;
+  Nombre: string;
+  Descripcion: string;
+  Categoria: string;
+  Imagen: string;
+  Stock: number;
 }
 
 

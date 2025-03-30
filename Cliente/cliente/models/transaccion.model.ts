@@ -28,6 +28,10 @@ export interface AgregarTransaccion{
   Detalle: string;
 }
 
+export interface AgregarTransaccionResult{
+  IdTransaccion: number;
+}
+
 export interface ActualizarTransaccion {
     IdTransaccion: number;
     IdProducto: number;
@@ -42,4 +46,15 @@ export interface ActualizarTransaccion {
 export interface ElimimarTransaccion{
   IdTransaccion: number;
 }  
+
+export interface Transaccion {
+  Id: number;
+  IdProducto: number;
+  Fecha: Date;
+  TipoTransaccion: string;
+  Cantidad: number;
+  PrecioUnitario: number;
+  PrecioTotal: number;
+  Detalle: string;
+}
   
