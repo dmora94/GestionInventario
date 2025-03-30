@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-producto',
   templateUrl: './from-producto.component.html',
-  //styleUrls: ['./form-producto.component.css']
+  styleUrls: ['./form-producto.component.css']
 })
 export class FormProductoComponent {
   form: FormGroup;

@@ -4,7 +4,8 @@ import { Producto } from '../../../models/producto.model';
 import { EliminarProducto } from '../../../models/producto.model';
 @Component({
   selector: 'app-list-productos',
-  templateUrl: './list-productos.component.html'
+  templateUrl: './list-productos.component.html',
+  styleUrls: ['./list-productos.component.css']
 })
 export class ListProductosComponent implements OnInit {
   productos: Producto[] = [];

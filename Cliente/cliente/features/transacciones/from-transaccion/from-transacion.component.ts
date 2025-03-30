@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TransaccionesService } from '../../../core/services/transacciones.service';
-import { ProductosService } from '../../../core/services/productos.service';
+import { TransaccionesService } from '../../../services/transacciones.services';
+import { ProductosService } from '../../../services/productos.services';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Producto } from '../../../core/models/producto.model';
-import { Transaccion } from '../../../core/models/transaccion.model';
+import { Producto } from '../../../models/producto.model';
+import { Transaccion } from '../../../models/transaccion.model';
+import { ObtenerTransaccion } from '../../../models/transaccion.model';
+import { ValidarInventario } from '../../../models/producto.model';
+
 
 @Component({
   selector: 'app-form-transaccion',
-  templateUrl: './form-transaccion.component.html',
+  templateUrl: './from-transacion.component.html',
   styleUrls: ['./form-transaccion.component.css']
 })
 export class FormTransaccionComponent implements OnInit {
@@ -16,7 +19,7 @@ export class FormTransaccionComponent implements OnInit {
   productos: Producto[] = [];
   tiposTransaccion = ['COMPRA', 'VENTA'];
   esEdicion = false;
-  idTransaccion?: number;
+  idTransaccion: number=0;
   cantidadOriginal = 0;
 
   constructor(
@@ -48,15 +51,19 @@ export class FormTransaccionComponent implements OnInit {
   }
 
   cargarProductos() {
-    this.productosService.obtenerProductos().subscribe((data) => {
+    this.productosService.dameProductos().subscribe((data) => {
       this.productos = data;
     });
   }
 
   cargarTransaccion() {
-    this.transaccionesService.obtenerTransaccionesPorIdProducto(this.idTransaccion!).subscribe((transaccion) => {
+    let obtenerTransaccion: ObtenerTransaccion = {
+      IdTransaccion: this.idTransaccion
+    };
+
+    this.transaccionesService.dameTransaccion(obtenerTransaccion).subscribe((transaccion) => {
       this.form.patchValue(transaccion);
-      this.cantidadOriginal = transaccion.cantidad;
+      this.cantidadOriginal = transaccion.Cantidad;
     });
   }
 
@@ -74,7 +81,12 @@ export class FormTransaccionComponent implements OnInit {
       const idProducto = this.form.controls['idProducto'].value;
       const stockDisminuir = Math.abs(diferencia);
 
-      this.transaccionesService.validarInventario(idProducto, stockDisminuir).subscribe((esValido) => {
+      let validarInventario: ValidarInventario = {
+        IdProducto: idProducto,
+        StockDisminuir: stockDisminuir
+      }
+
+      this.productosService.validaInventario(validarInventario).subscribe((esValido) => {
         if (!esValido) {
           alert('No hay suficiente stock para la venta.');
           return;
@@ -88,12 +100,12 @@ export class FormTransaccionComponent implements OnInit {
 
   guardarTransaccion() {
     if (this.esEdicion) {
-      this.transaccionesService.actualizarTransaccion(this.form.value).subscribe(() => {
+      this.transaccionesService.editaTransaccion(this.form.value).subscribe(() => {
         alert('Transacción actualizada');
         this.router.navigate(['/transacciones']);
       });
     } else {
-      this.transaccionesService.agregarTransaccion(this.form.value).subscribe(() => {
+      this.transaccionesService.nuevaTransaccion(this.form.value).subscribe(() => {
         alert('Transacción guardada');
         this.router.navigate(['/transacciones']);
       });
