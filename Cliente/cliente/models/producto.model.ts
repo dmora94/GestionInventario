@@ -58,6 +58,7 @@ export interface Producto{
   Descripcion: string;
   Categoria: string;
   Imagen: string;
+  Precio: number;
   Stock: number;
 }
 

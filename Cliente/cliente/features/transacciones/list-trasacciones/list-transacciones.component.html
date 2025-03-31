@@ -2,7 +2,7 @@
 
 <label>Seleccionar Producto:</label>
 <select [(ngModel)]="idProductoSeleccionado" (change)="obtenerTransacciones()" class="form-control">
-  <option *ngFor="let producto of productos" [value]="producto.id">{{ producto.nombre }}</option>
+  <option *ngFor="let producto of productos" [value]="producto.Id">{{ producto.Nombre }}</option>
 </select>
 
 <button class="btn btn-primary mt-2" routerLink="/transacciones/nueva">Nueva Transacción</button>
@@ -20,14 +20,14 @@
   </thead>
   <tbody>
     <tr *ngFor="let transaccion of transacciones">
-      <td>{{ transaccion.idTransaccion }}</td>
-      <td>{{ transaccion.fecha }}</td>
-      <td>{{ transaccion.tipoTransaccion }}</td>
-      <td>{{ transaccion.cantidad }}</td>
-      <td>{{ transaccion.precioTotal }}</td>
+      <td>{{ transaccion.Id }}</td>
+      <td>{{ transaccion.Fecha }}</td>
+      <td>{{ transaccion.TipoTransaccion }}</td>
+      <td>{{ transaccion.Cantidad }}</td>
+      <td>{{ transaccion.PrecioTotal }}</td>
       <td>
-        <button class="btn btn-warning" [routerLink]="['/transacciones/editar', transaccion.idTransaccion]">Editar</button>
-        <button class="btn btn-danger" (click)="eliminarTransaccion(transaccion.idTransaccion!)">Eliminar</button>
+        <button class="btn btn-warning" [routerLink]="['/transacciones/editar', transaccion.Id]">Editar</button>
+        <button class="btn btn-danger" (click)="eliminarTransaccion(transaccion.Id!)">Eliminar</button>
       </td>
     </tr>
   </tbody>

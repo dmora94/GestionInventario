@@ -4,13 +4,15 @@ import { TransaccionesService } from '../../../services/transacciones.services';
 import { ProductosService } from '../../../services/productos.services';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Producto } from '../../../models/producto.model';
-import { Transaccion } from '../../../models/transaccion.model';
 import { ObtenerTransaccion } from '../../../models/transaccion.model';
 import { ValidarInventario } from '../../../models/producto.model';
-
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-form-transaccion',
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './from-transacion.component.html',
   styleUrls: ['./form-transaccion.component.css']
 })

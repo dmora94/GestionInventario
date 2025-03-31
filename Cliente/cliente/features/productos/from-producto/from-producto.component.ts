@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductosService } from '../../../services/productos.services';
 import { Router } from '@angular/router';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-form-producto',
+  imports: [ReactiveFormsModule],  
   templateUrl: './from-producto.component.html',
   styleUrls: ['./form-producto.component.css']
 })

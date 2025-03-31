@@ -6,18 +6,20 @@
       <th>Nombre</th>
       <th>Categoria</th>
       <th>Precio</th>
+      <th>Stock</th>
       <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let producto of productos">
-      <td>{{ producto.id }}</td>
-      <td>{{ producto.nombre }}</td>
-      <td>{{ producto.categoria }}</td>
-      <td>{{ producto.precio }}</td>
+      <td>{{ producto.Id }}</td>
+      <td>{{ producto.Nombre }}</td>
+      <td>{{ producto.Categoria }}</td>
+      <td>{{ producto.Precio }}</td>
+      <td>{{ producto.Stock }}</td>
       <td>
         <button class="btn btn-warning">Editar</button>
-        <button class="btn btn-danger" (click)="eliminarProducto(producto.id!)">Eliminar</button>
+        <button class="btn btn-danger" (click)="eliminarProducto(producto.Id)">Eliminar</button>
       </td>
     </tr>
   </tbody>

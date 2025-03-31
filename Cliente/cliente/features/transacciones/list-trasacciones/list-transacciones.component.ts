@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
 import { TransaccionesService } from '../../../services/transacciones.services';
 import { ProductosService } from '../../../services/productos.services';
 import { Transaccion } from '../../../models/transaccion.model';
 import { Producto } from '../../../models/producto.model';
 import { ObtenerTransaccionesPorIdProducto } from '../../../models/transaccion.model';
 import { ElimimarTransaccion } from '../../../models/transaccion.model';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-list-transacciones',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './list-transacciones.component.html',
   styleUrls: ['./list-transacciones.component.css']
 })

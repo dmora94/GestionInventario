@@ -21,7 +21,7 @@
   <input type="number" formControlName="precioUnitario" class="form-control" (input)="calcularPrecioTotal()">
 
   <label>Precio Total:</label>
-  <input type="number" formControlName="precioTotal" class="form-control" disabled>
+  <input type="number" formControlName="precioTotal" class="form-control" [disabled]="esEdicion">
 
   <label>Detalle:</label>
   <textarea formControlName="detalle" class="form-control"></textarea>
